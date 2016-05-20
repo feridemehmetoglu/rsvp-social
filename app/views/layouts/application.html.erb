@@ -11,8 +11,9 @@
 	 <p class="notice"><%= notice %></p>
      <p class="alert"><%= alert %></p>
 
-<div class="navbar navbar-nav">
-     <ul class="nav navbar-nav pull-right">
+     <div class="container-fluid">
+     	<div class="navbar navbar-nav col-md-12">
+         <ul class="nav navbar-nav pull-right">
      	<% if user_signed_in?%>
 
      	<li><%= link_to "#{current_user.email}" %></li>
@@ -24,10 +25,19 @@
      
         <% end %>
      </ul>
-</div>
+     </div>
+     <ul class="col-md-8 col-md-offset-1">
+     	
+     	<%= yield %>
+
+     </ul>
 
 
-<%= yield %>
+     </div>
+
+
+
+
 
 </body>
 </html>
