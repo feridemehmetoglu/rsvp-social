@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :authenticate_user! # @before_filter rails5.0 ile birlikte önerilmiyor artık
 
   # GET /events
   # GET /events.json
@@ -25,7 +26,9 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
+    #@event = Event.new(event_params)
+    @event = current_user.organized_events.new(event_params) # create methodu artık current_user a bağlı olduğu için => before_filter :authenticate_user!  ekledik
+
 
     respond_to do |format|
       if @event.save
